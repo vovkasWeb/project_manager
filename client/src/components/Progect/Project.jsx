@@ -1,11 +1,12 @@
-const Project = ({ name, shortDescription, imageUrl, id }) => {
+import noPhoto from './no_photo.jpg'
+const Project = ({ name, shortDescription, imageUrl, _id }) => {
 	return (
 		<div className='flex-50 m-2'>
 			<div className='md:flex max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl'>
 				<div className='md:shrink-0'>
 					<img
 						className='h-48 w-full object-cover md:h-full md:w-48'
-						src={imageUrl}
+						src={imageUrl ? imageUrl : noPhoto}
 					/>
 				</div>
 				<div className='p-8'>
@@ -13,7 +14,10 @@ const Project = ({ name, shortDescription, imageUrl, id }) => {
 						{name}
 					</div>
 					<p className='mt-2 mb-1 text-slate-500'>{shortDescription}</p>
-					<a className='btn-castom mx-2 bg-red-600 hover:bg-red-900 ml-auto' href='#'>
+					<a
+						className='btn-castom mx-2 bg-red-600 hover:bg-red-900 ml-auto'
+						href={`products/${_id}`}
+					>
 						Read full
 					</a>
 				</div>
