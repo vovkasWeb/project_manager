@@ -8,7 +8,13 @@ export const fetchProject = createAsyncThunk(
 		return data
 	}
 )
-
+export const fetchRemoveProject = createAsyncThunk(
+	'project/fetchRemoveProject',
+	async id => {
+		const { data } = axios.delete(`/projects/${id}`)
+		return data
+	}
+)
 const initialState = {
 	projects: {
 		items: [],

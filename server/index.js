@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import multer from 'multer'
 
 import router from './router/index.js'
 
@@ -18,6 +19,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 app.use('/api', router)
+app.use('/uploads', express.static('uploads'))
 
 app.get('/', (req, res) => {
 	res.json('test')

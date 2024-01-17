@@ -6,7 +6,7 @@ const Project = ({ name, shortDescription, imageUrl, _id }) => {
 				<div className='md:shrink-0'>
 					<img
 						className='h-48 w-full object-cover md:h-full md:w-48'
-						src={imageUrl ? imageUrl : noPhoto}
+						src={imageUrl ? `http://localhost:3001${imageUrl}` : noPhoto}
 					/>
 				</div>
 				<div className='p-8'>
@@ -16,7 +16,7 @@ const Project = ({ name, shortDescription, imageUrl, _id }) => {
 					<p className='mt-2 mb-1 text-slate-500'>{shortDescription}</p>
 					<a
 						className='btn-castom mx-2 bg-red-600 hover:bg-red-900 ml-auto'
-						href={`products/${_id}`}
+						href={`projects/${_id}`}
 					>
 						Read full
 					</a>

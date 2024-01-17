@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Link, Navigate} from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-
 import { fetchAuth, seletctIsAuth } from '../../redux/slices/auth.js'
 
 const Login = () => {
@@ -15,9 +14,6 @@ const Login = () => {
 		reset,
 	} = useForm({mode:'onBlur'})
 
-	if (isAuth) {
-		return <Navigate to='/' />
-	}
 	const onSubmit = async values => {
 		const data = await dispatch(fetchAuth(values))
 		if (!data.payload) {
@@ -25,12 +21,11 @@ const Login = () => {
 		}
 		if ('token' in data.payload) {
 			window.localStorage.setItem('token', data.payload.token)
-			reset()
 		}
 	}
 
 	if (isAuth) {
-		<Navigate to='/' />
+		return <Navigate to='/' />
 	}
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>

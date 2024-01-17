@@ -11,6 +11,8 @@ const Home = () => {
 	useEffect(() => {
 		dispatch(fetchProject())
 	}, [])
+
+	
 	return (
 		<div className=''>
 			<Filter />

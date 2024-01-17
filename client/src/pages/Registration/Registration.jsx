@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 
@@ -124,15 +124,16 @@ const Registration = () => {
 				</div>
 
 				<div className='mt-6 flex items-center justify-end gap-x-6'>
-					<button
-						type='button'
+					<Link
+						to='/'
 						className='text-sm font-semibold leading-6 text-gray-900'
 					>
 						Cancel
-					</button>
+					</Link>
 					<button
+						disabled={!isValid}
 						type='submit'
-						className='rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+						className='rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-indigo-300'
 					>
 						Register
 					</button>

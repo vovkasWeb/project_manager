@@ -1,5 +1,7 @@
 import ProjectModel from '../models/Project.js'
 import deletePasswordHash from '../utils/deletePasswordHash.js'
+import TaskModel from '../models/Task.js'
+import fs from 'fs'
 
 export const getAll = async (req, res) => {
 	try {
@@ -13,6 +15,7 @@ export const getAll = async (req, res) => {
 		})
 	}
 }
+
 export const getOne = async (req, res) => {
 	try {
 		const projectId = req.params.id
@@ -29,25 +32,169 @@ export const getOne = async (req, res) => {
 		})
 	}
 }
+export const getMyAll = async (req, res) => {
+	try {
+		const projects = await ProjectModel.find({ user: req.userId })
+		if (projects == []) {
+			return res.json({ message: 'Пустой список' })
+		}
+		res.json(projects.reverse())
+	} catch (err) {
+		console.log(err)
+		res.status(500).json({
+			message: 'Не удалось получить проекты',
+		})
+	}
+}
+
+export const uploading = async (req, res) => {
+	res.json({
+		url: `/uploads/${req.file.originalname}`,
+	})
+}
+
+export const removeUplode = (req, res) => {
+	try {
+		const nameFile = req.params.nameFile
+		fs.unlink(`uploads/${nameFile}`, err => {
+			if (err) {
+				return res.status(404).json({ message: 'Image not found' })
+			}
+			res.status(200).json({ message: 'Image deleted successfully' })
+		})
+	} catch (err) {
+		console.log(err)
+		res.status(500).json({
+			message: 'Не удалось удалить картинку',
+		})
+	}
+}
 
 export const create = async (req, res) => {
 	try {
-		const doc = new ProjectModel({
+		const newData = {
 			name: req.body.name,
 			shortDescription: req.body.shortDescription,
 			text: req.body.text,
 			imageUrl: req.body.imageUrl,
 			user: req.userId,
-		})
+		}
+		const doc = new ProjectModel(newData)
 		const projects = await doc.save()
 		res.json(projects)
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
-			message: 'Не удалось создать статью',
+			message: 'Не удалось создать project',
 		})
 	}
 }
+export const createTask = async (req, res) => {
+	try {
+		const projectId = req.params.id
+		console.log(projectId)
+		const newData = {
+			name: req.body.name,
+			text: req.body.text,
+			imageUrl: req.body.imageUrl,
+			project: projectId,
+		}
+		console.log(newData)
+		const doc = new TaskModel(newData)
+		const projects = await doc.save()
+		res.json(projects)
+	} catch (err) {
+		console.log(err)
+		res.status(500).json({
+			message: 'Не удалось создать task',
+		})
+	}
+}
+export const getAllTask = async (req, res) => {
+	try {
+		const projectId = req.params.id
+		const project = await TaskModel.find({ project: projectId })
+		res.json(project)
+	} catch (error) {
+		console.log(error)
+		res.status(500).json({
+			message: 'Task не найден',
+		})
+	}
+}
+export const getOneTask = async (req, res) => {
+	try {
+		const TaskId = req.params.id
+		const task = await TaskModel.findById(TaskId)
+		res.json(task)
+	} catch (error) {
+		console.log(error)
+		res.status(500).json({
+			message: 'Проект не найден',
+		})
+	}
+}
+
+export const deleteTask = async (req, res) => {
+	try {
+		const TaskId = req.params.id
+		await TaskModel.deleteOne({ _id: TaskId })
+		res.json({
+			success: true,
+		})
+	} catch (err) {
+		console.log(err)
+		res.status(500).json({
+			message: 'Не удалось удалить',
+		})
+	}
+}
+export const deleteManyTask = async (req, res) => {
+	try {
+		const projectId = req.params.id
+		await TaskModel.deleteMany({ project: projectId })
+		res.json({
+			success: true,
+		})
+	} catch (err) {
+		console.log(err)
+		res.status(500).json({
+			message: 'Не удалось удалить',
+		})
+	}
+}
+
+export const updateTask = async (req, res) => {
+	try {
+		const taskId = req.params.id
+		await TaskModel.updateOne(
+			{
+				_id: taskId,
+			},
+			{
+				name: req.body.name,
+				text: req.body.text,
+				imageUrl: req.body.imageUrl,
+			}
+		)
+			.then(() => {
+				res.json({
+					success: true,
+				})
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: err,
+				})
+			})
+	} catch (err) {
+		console.log(err)
+		res.status(500).json({
+			message: 'Обновить не удалось',
+		})
+	}
+}
+
 export const update = async (req, res) => {
 	try {
 		const projectId = req.params.id
@@ -94,12 +241,9 @@ export const remove = async (req, res) => {
 							message: 'Не удалось удалить',
 						})
 					}
-					res.json({
-						success: true,
-					})
 				}
 			)
-			res.json({
+			return res.json({
 				success: true,
 			})
 		} else {

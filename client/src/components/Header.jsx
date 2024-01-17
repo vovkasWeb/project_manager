@@ -11,7 +11,6 @@ const Header = () => {
 			window.localStorage.removeItem('token')
 		}
 	}
-	console.log(isAuth);
 	return (
 		<header className='py-2 px-5 bg-amber-300 w-full flex justify-between'>
 			<Link className='text-xl' to='/'>
@@ -20,6 +19,9 @@ const Header = () => {
 			<div>
 				{isAuth ? (
 					<>
+						<Link className='btn-castom mx-1' to='/myProjects'>
+							My Project
+						</Link>
 						<Link className='btn-castom mx-1' to='/addPost'>
 							Написать статью
 						</Link>
