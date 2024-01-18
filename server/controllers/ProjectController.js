@@ -11,7 +11,7 @@ export const getAll = async (req, res) => {
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
-			message: 'Не удалось получить проекты',
+			message: 'Не вдалося отримати проєкти',
 		})
 	}
 }
@@ -28,7 +28,7 @@ export const getOne = async (req, res) => {
 	} catch (error) {
 		console.log(error)
 		res.status(500).json({
-			message: 'Проект не найден',
+			message: 'Проект не знайдено',
 		})
 	}
 }
@@ -36,13 +36,13 @@ export const getMyAll = async (req, res) => {
 	try {
 		const projects = await ProjectModel.find({ user: req.userId })
 		if (projects == []) {
-			return res.json({ message: 'Пустой список' })
+			return res.json({ message: 'Порожній список' })
 		}
 		res.json(projects.reverse())
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
-			message: 'Не удалось получить проекты',
+			message: 'Не вдалося отримати проєкти',
 		})
 	}
 }
@@ -65,7 +65,7 @@ export const removeUplode = (req, res) => {
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
-			message: 'Не удалось удалить картинку',
+			message: 'Не вдалося видалити картинку',
 		})
 	}
 }
@@ -85,7 +85,7 @@ export const create = async (req, res) => {
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
-			message: 'Не удалось создать project',
+			message: 'Не вдалося створити project',
 		})
 	}
 }
@@ -106,7 +106,7 @@ export const createTask = async (req, res) => {
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
-			message: 'Не удалось создать task',
+			message: 'Не вдалося створити завдання',
 		})
 	}
 }
@@ -118,7 +118,7 @@ export const getAllTask = async (req, res) => {
 	} catch (error) {
 		console.log(error)
 		res.status(500).json({
-			message: 'Task не найден',
+			message: 'Task не знайдено',
 		})
 	}
 }
@@ -130,7 +130,7 @@ export const getOneTask = async (req, res) => {
 	} catch (error) {
 		console.log(error)
 		res.status(500).json({
-			message: 'Проект не найден',
+			message: 'Проект не знайдено',
 		})
 	}
 }
@@ -145,21 +145,21 @@ export const deleteTask = async (req, res) => {
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
-			message: 'Не удалось удалить',
+			message: 'Не вдалося видалити',
 		})
 	}
 }
 export const deleteManyTask = async (req, res) => {
 	try {
-		const projectId = req.params.id
-		await TaskModel.deleteMany({ project: projectId })
+		const TaskId = req.params.id
+		await TaskModel.deleteMany({ project: TaskId })
 		res.json({
 			success: true,
 		})
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
-			message: 'Не удалось удалить',
+			message: 'Не вдалося видалити',
 		})
 	}
 }
@@ -190,7 +190,7 @@ export const updateTask = async (req, res) => {
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
-			message: 'Обновить не удалось',
+			message: 'Оновити не вдалося',
 		})
 	}
 }
@@ -219,13 +219,13 @@ export const update = async (req, res) => {
 			})
 		} else {
 			res.status(500).json({
-				message: 'Отказано в доступе, это не ваша статья',
+				message: 'Відмовлено в доступі, це не ваша стаття',
 			})
 		}
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
-			message: 'Обновить не удалось',
+			message: 'Оновити не вдалося',
 		})
 	}
 }
@@ -248,7 +248,7 @@ export const remove = async (req, res) => {
 			})
 		} else {
 			res.status(500).json({
-				message: 'Отказано в доступе, это не ваша статья',
+				message: 'Відмовлено в доступі, це не ваша стаття',
 			})
 		}
 	} catch (err) {

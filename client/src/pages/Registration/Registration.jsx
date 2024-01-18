@@ -21,7 +21,7 @@ const Registration = () => {
 	const onSubmit = async value => {
 		const data = await dispatch(fetchRegister(value))
 		if (!data.payload) {
-			return alert('не удалось зарегеситрироваться')
+			return alert('Не вдалося зареєструватися')
 		}
 
 		if ('token' in data.payload) {
@@ -42,10 +42,10 @@ const Registration = () => {
 							</label>
 							<input
 								{...register('email', {
-									required: 'Поле обезательно к заполнению',
+									required: 'Поле обовязкове до заповнення',
 									minLength: {
 										value: 5,
-										message: 'минимум 5 символов.',
+										message: 'мінімум 5 символів.',
 									},
 								})}
 								id='email'
@@ -71,10 +71,10 @@ const Registration = () => {
 							</label>
 							<input
 								{...register('password', {
-									required: 'Поле обезательно к заполнению',
+									required: 'Поле обовязкове до заповнення',
 									minLength: {
 										value: 5,
-										message: 'минимум 5 символов.',
+										message: 'мінімум 5 символів.',
 									},
 								})}
 								type='text'
@@ -100,10 +100,10 @@ const Registration = () => {
 							</label>
 							<input
 								{...register('fullName', {
-									required: 'Поле обезательно к заполнению',
+									required: 'Поле обовязкове до заповнення',
 									minLength: {
 										value: 3,
-										message: 'минимум 3 символов.',
+										message: 'мінімум 3 символи',
 									},
 								})}
 								id='fullName'

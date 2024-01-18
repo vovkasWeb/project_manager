@@ -21,10 +21,10 @@ const Task = () => {
 	}, [tasks])
 
 	const onDeleteProject = id => {
-		if (window.confirm('Вы дествительно хотите удалить Таск  ?')) {
+		if (window.confirm('Ви справді хочете видалити Таск?')) {
         axios.delete(`/task/${id}`)
 				.then(() => {
-					alert('Успешно удалил')
+					alert('Успішно видалив')
 				})
 				.catch(err => {
 					alert(err)
@@ -36,7 +36,7 @@ const Task = () => {
 		return <div>loading</div>
 	}
     if (tasks.length ===0) {
-        	return <h3 className='text-center py-10'>Задач нету для этого проекта</h3>
+        	return <h3 className='text-center py-10'>Завдань немає для цього проекту</h3>
     }
 	if (!isAuth) {
 		return <Navigate to='/' />

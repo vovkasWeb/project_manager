@@ -19,13 +19,13 @@ const MyProjects = () => {
 	}, [myProjects])
 
 	const onDeleteProject = id => {
-		if (window.confirm('Вы дествительно хотите удалить статью  ?')) {
+		if (window.confirm('Ви справді хочете видалити статтю?')) {
 			dispatch(fetchRemoveProject(id))
 				.then(() => {
 					axios
 						.delete(`/tasks/${id}`)
 						.then(() => {
-							alert('Успешно удалил')
+							alert('Успішно видалив')
 						})
 						.catch(err => {
 							alert(err)
@@ -37,7 +37,9 @@ const MyProjects = () => {
 		}
 	}
 	if (myProjects.length === 0) {
-		return <h3 className='text-center py-10'>У вас нету проектов, создайте их</h3>
+		return (
+			<h3 className='text-center py-10'>У вас немає проектів, створіть їх</h3>
+		)
 	}
 
 	if (isLoading) {

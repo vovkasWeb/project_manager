@@ -33,19 +33,19 @@ const AddTask = () => {
 				const dataUrl = await axios.post('/upload', formData)
 				console.log(dataUrl)
 				if (dataUrl.status !== 200) {
-					return alert('Ошибка при создание проекта')
+					return alert('Помилка під час створення проекту')
 				}
 				newData.imageUrl = dataUrl.data.url
 			}
 
 			const data = await axios.post(`/task/${id}`, newData)
 			if (data.status !== 200) {
-				return alert('Ошибка при создание проекта')
+				return alert('Помилка під час створення проекту')
 			}
 			 navigate(`/projects/${id}`)
 		} catch (err) {
 			console.warn(err)
-			return alert('Ошибка при создание проекта')
+			return alert('Помилка під час створення проекту')
 		}
 	}
 	return (
@@ -63,10 +63,10 @@ const AddTask = () => {
 							</label>
 							<input
 								{...register('name', {
-									required: 'Поле обезательно к заполнению',
+									required: 'Поле обовязкове до заповнення',
 									minLength: {
 										value: 2,
-										message: 'минимум 2 символов.',
+										message: 'мінімум 2 символи',
 									},
 								})}
 								id='name'
@@ -92,10 +92,10 @@ const AddTask = () => {
 							</label>
 							<input
 								{...register('text', {
-									required: 'Поле обезательно к заполнению',
+									required: 'Поле обовязкове до заповнення',
 									minLength: {
 										value: 10,
-										message: 'минимум 10 символов.',
+										message: 'мінімум 10 символів',
 									},
 								})}
 								type='text'
@@ -121,7 +121,7 @@ const AddTask = () => {
 								Image
 							</label>
 							<label className='block pt-2'>
-								<span className='sr-only'>Choose profile photo</span>
+								<span className='sr-only'>Оберіть фото профілю</span>
 								<input
 									type='file'
 									name='image'

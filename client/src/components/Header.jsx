@@ -20,10 +20,10 @@ const Header = () => {
 				{isAuth ? (
 					<>
 						<Link className='btn-castom mx-1' to='/myProjects'>
-							My Project
+							Мій проекти
 						</Link>
 						<Link className='btn-castom mx-1' to='/addPost'>
-							Написать статью
+							Написати статтю
 						</Link>
 						<button
 							className='btn-castom mx-1'
@@ -31,16 +31,16 @@ const Header = () => {
 							variant='contained'
 							color='error'
 						>
-							Выйти
+							Вийти
 						</button>
 					</>
 				) : (
 					<>
 						<Link className='btn-castom mx-1' to='/login'>
-							Login
+							Вхід
 						</Link>
 						<Link className='btn-castom mx-1' to='/register'>
-							Registration
+							Реєстрація
 						</Link>
 					</>
 				)}

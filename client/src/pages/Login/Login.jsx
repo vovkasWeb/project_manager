@@ -17,7 +17,7 @@ const Login = () => {
 	const onSubmit = async values => {
 		const data = await dispatch(fetchAuth(values))
 		if (!data.payload) {
-			return alert('Не удалось авторизоваться')
+			return alert('Не вдалося авторизуватися')
 		}
 		if ('token' in data.payload) {
 			window.localStorage.setItem('token', data.payload.token)
@@ -41,10 +41,10 @@ const Login = () => {
 							</label>
 							<input
 								{...register('email', {
-									required: 'Поле обезательно к заполнению',
+									required: 'Поле обовязкове до заповнення',
 									minLength: {
 										value: 5,
-										message: 'минимум 5 символов.',
+										message: 'мінімум 5 символів',
 									},
 								})}
 								id='email'
@@ -70,10 +70,10 @@ const Login = () => {
 							</label>
 							<input
 								{...register('password', {
-									required: 'Поле обезательно к заполнению',
+									required: 'Поле обовязкове до заповнення',
 									minLength: {
 										value: 5,
-										message: 'минимум 5 символов.',
+										message: 'мінімум 5 символів',
 									},
 								})}
 								type='text'

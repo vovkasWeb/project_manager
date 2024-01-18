@@ -53,14 +53,13 @@ const ProjectUpdate = () => {
 					const dataUrl = await axios.delete(
 						`/upload/${dataOnServer.imageUrl.replace('/uploads/', '')}`
 					).catch(err=>{
-					return alert('Ошибка при создание проекта')
+					return alert('Помилка під час створення проекту')
 				})
-					console.log('Удалил', dataUrl)
 				}
 				const formData = new FormData()
 				formData.append('image', file)
 				const dataUrl = await axios.post('/upload', formData).catch(err=>{
-					return alert('Ошибка при создание проекта')
+					return alert('Помилка під час створення проекту')
 				})
 
 				newData.imageUrl = dataUrl.data.url
@@ -71,13 +70,13 @@ const ProjectUpdate = () => {
 				alert('Project update')
 			})
 			.catch(err=>{
-				return alert('Ошибка при создание проекта--')
+				return alert('Помилка під час створення проекту')
 			})
 			console.log(data);
 			 navigate(`/projects/${dataOnServer._id}`)
 		} catch (err) {
 			console.warn(err)
-			return alert('Ошибка при создание проекта 0')
+			return alert('Помилка під час створення проекту')
 		}
 	}
 
@@ -85,7 +84,7 @@ const ProjectUpdate = () => {
 		<form onSubmit={handleSubmit(onSubmit)} id='formElem'>
 			<div className='max-w-xl mx-auto px-10'>
 				<div className='space-y-12 mt-4'>
-					<h2 className='text-center font-black text-xl'> Update Project</h2>
+					<h2 className='text-center font-black text-xl'> Проект оновлення</h2>
 					<div className='border-b border-gray-900/10 pb-8 '>
 						<div className='col-span-full pt-1'>
 							<label
@@ -96,10 +95,10 @@ const ProjectUpdate = () => {
 							</label>
 							<input
 								{...register('name', {
-									required: 'Поле обезательно к заполнению',
+									required: 'Поле обовязкове до заповнення',
 									minLength: {
 										value: 2,
-										message: 'минимум 2 символов.',
+										message: 'мінімум 2 символи',
 									},
 								})}
 								id='name'
@@ -125,10 +124,10 @@ const ProjectUpdate = () => {
 							</label>
 							<input
 								{...register('text', {
-									required: 'Поле обезательно к заполнению',
+									required: 'Поле обовязкове до заповнення',
 									minLength: {
 										value: 10,
-										message: 'минимум 10 символов.',
+										message: 'мінімум 10 символів.',
 									},
 								})}
 								type='text'
@@ -155,10 +154,10 @@ const ProjectUpdate = () => {
 							</label>
 							<input
 								{...register('shortDescription', {
-									required: 'Поле обезательно к заполнению',
+									required: 'Поле обовязкове до заповнення',
 									minLength: {
 										value: 10,
-										message: 'минимум 10 символов.',
+										message: 'мінімум 10 символів.',
 									},
 								})}
 								type='shortDescription'
@@ -183,7 +182,7 @@ const ProjectUpdate = () => {
 								Image
 							</label>
 							<label className='block pt-2'>
-								<span className='sr-only'>Choose profile photo</span>
+								<span className='sr-only'>Оберіть фото профілю</span>
 								<input
 									type='file'
 									name='image'

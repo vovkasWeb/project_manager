@@ -37,7 +37,9 @@ const FullPost = () => {
 			</div>
 			<div className='flex-50 m-4 px-3 py-2 rounded-2xl bg-red-100'>
 				<div>
-					<h2 className='text-center text-2xl font-black'>Info for Project</h2>
+					<h2 className='text-center text-2xl font-black'>
+						Інформація для проєкту
+					</h2>
 					<h3 className='font-bold text-2xl'>Name:</h3>
 					<h2 className='text-xl'>{data.name}</h2>
 					<h3 className='font-bold text-2xl'>Full info:</h3>
@@ -51,7 +53,10 @@ const FullPost = () => {
 								'Loading...'
 							) : tasks.length ? (
 								tasks.map(task => (
-									<div key={task._id} className='px-2 py-1 my-1 bg-red-500 rounded-xl flex items-center text-base w-full'>
+									<div
+										key={task._id}
+										className='px-2 py-1 my-1 bg-red-500 rounded-xl flex items-center text-base w-full'
+									>
 										<img
 											className='w-10'
 											src={
@@ -70,7 +75,7 @@ const FullPost = () => {
 									</div>
 								))
 							) : (
-								<h3>Задач нету</h3>
+								<h3>Завдань немає</h3>
 							)}
 						</div>
 					</h2>
